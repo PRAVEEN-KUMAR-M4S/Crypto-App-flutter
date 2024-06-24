@@ -1,29 +1,18 @@
-import 'package:crypto/core/color/hex_rgb.dart';
+import 'package:crypto/home/data/models/coin_market_model.dart';
+import 'package:crypto/home/presentation/widgets/item_container.dart';
 import 'package:flutter/material.dart';
 
 class TopGainersCard extends StatelessWidget {
-  const TopGainersCard({super.key});
+  final List<CoinModel> item;
+  const TopGainersCard({super.key, required this.item});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 60,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16),
-        
-        color: Colors.black.withOpacity(0.8),
-        
-       
-      ),
-      child: Row(
-        children: [
-          Container(height: 30,width: 30,decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(5),color: hexToColor('#E6EEF7'),
-          ),
-          child: Center(child: Icon(Icons.ac_unit),),)
-        ],
-      ),
-    );
+    return ListView.builder(
+        itemCount: 5,
+        itemBuilder: (context, index) {
+          final data = item[index];
+          return ItemContainer(coinModel: data,);
+        });
   }
 }
